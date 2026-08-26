@@ -1,5 +1,6 @@
-export default async function (fastify, opts) {
-  fastify.get('/', async function (request, reply) {
-    return { root: true }
+export default async function (app, options) {
+  app.get('/', async function (req, res) {
+    res.send('Welcome to Hexlet!')
+    // return { root: true }
   })
 }

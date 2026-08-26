@@ -1,5 +1,5 @@
-export default async function (fastify, opts) {
-  fastify.get('/', async function (request, reply) {
+export default async function (app, options) {
+  app.get('/', async function (request, reply) {
     return 'this is an example'
   })
 }
