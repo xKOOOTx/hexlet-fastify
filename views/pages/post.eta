@@ -1,0 +1,4 @@
+<div>
+    <h1>Пост № <%= it.id %></h1>
+    <p><%= it.description %></p>
+</div>

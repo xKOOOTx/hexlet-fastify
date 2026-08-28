@@ -1,0 +1,10 @@
+<div>
+    <% if (it.posts.length === 0) { %>
+        <p>Постов пока нет</p>
+    <% } %>
+    <% it.posts.forEach(post => { %>
+        <div class="d-flex gap-3">
+            <a href="/posts/<%= post.id %>"><%= post.description %></a>
+        </div>
+    <% }) %>
+</div>

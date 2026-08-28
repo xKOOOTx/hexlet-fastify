@@ -1,0 +1,9 @@
+<nav class="navbar navbar-expand-lg bg-secondary">
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="https://github.com/xKOOOTx" target="_blank" class="nav-link">github</a>    
+            </li>
+        </ul>
+    </div>
+</nav>
