@@ -1,5 +1,5 @@
 export const users = [
-  { id: 'a1f7k2m-3b9x-41cd', username: 'Alex', email: 'alex@gmail.com' },
+  { id: 'a1f7k2m-3b9x-41cd', username: '<script>alert("attack!")</script>', email: 'alex@gmail.com' },
   { id: 'b8q4n6p-7d2y-52ef', username: 'Maria', email: 'maria@gmail.com' },
   { id: 'c3w9r1t-5e8z-63fg', username: 'John', email: 'john@gmail.com' },
   { id: 'd6u2i8o-4p7a-74gh', username: 'Emma', email: 'emma@gmail.com' },

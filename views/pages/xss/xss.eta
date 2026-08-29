@@ -1,0 +1,11 @@
+<div>
+    <% if (it.id) { %>
+        <%~ it.id %>
+    <% } %>
+</div>
+
+<form action="/xss" method="post">
+    <button type="submit" class="btn btn-primary">
+        POST запрос
+    </button>
+</form>

@@ -13,6 +13,9 @@
             <li class="nav-item">
                 <a href="/users" class="nav-link">Пользователи</a>
             </li>
+            <li class="nav-item">
+                <a href="/xss" class="nav-link">XSS</a>
+            </li>
         </ul>
     </div>
 </nav>

@@ -1,4 +1,4 @@
 <div>
-    <p><%= it.username %></p>
-    <p><%= it.email %></p>
+    <p><%~ it.username %></p>
+    <p><%~ it.email %></p>
 </div>
