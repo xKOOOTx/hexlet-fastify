@@ -10,6 +10,9 @@
             <li class="nav-item">
                 <a href="/posts" class="nav-link">Посты</a>
             </li>
+            <li class="nav-item">
+                <a href="/users" class="nav-link">Пользователи</a>
+            </li>
         </ul>
     </div>
 </nav>

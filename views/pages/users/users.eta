@@ -1,0 +1,27 @@
+<div class="mx-auto">
+    <% if (it.users.length === 0) { %>
+        <p>Список пользователей пуст</p>
+    <% } %>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% it.users.forEach(user => { %>
+                <tr>
+                    <th scope="row">
+                        <a href="/users/<%= user.id %>"> <%= user.id %> </a>
+                    </th>
+                    <td><%= user.username %></td>
+                    <td><%= user.email %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    
+    
+</div>
