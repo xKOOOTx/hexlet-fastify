@@ -1,11 +1,30 @@
-<div>
-    <% if (it.id) { %>
+<div class="my-2">
+    <% if (it.id === 'undefined') { %>
+        <p>Нажмите кнопку "Попробовать XSS"</p>
+    <% } %>
+    <% if (it.id !== 'undefined') { %>
         <%~ it.id %>
     <% } %>
 </div>
 
-<form action="/xss" method="post">
-    <button type="submit" class="btn btn-primary">
-        POST запрос
-    </button>
-</form>
+<div class="d-flex gap-2">
+    <form action="/xss?id=%3Cscript%3Ealert('attack!')%3B%3C%2Fscript%3E" method="get">
+        <input
+            type="hidden"
+            name="id"
+            value="<script>alert('attack!')</script>"
+        >
+
+        <button type="submit" class="btn btn-danger">
+            Попробовать XSS
+        </button>
+    </form>
+    <form action="/xss" method="get">
+        <button type="submit" class="btn btn-danger"> Сбросить XSS</button>
+    </form>
+    <form action="/xss" method="post">
+        <button type="submit" class="btn btn-primary">
+            POST запрос
+        </button>
+    </form>
+</div>
