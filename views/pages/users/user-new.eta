@@ -1,0 +1,14 @@
+<form action="/users/new" method="POST" class="w-25">
+    <div class="mb-3">
+        <label for="name" class="form-label">Имя пользователя*</label>
+        <input id="name" name="username" value="<%= it.username ?? ''%>" class="form-control" required placeholder="Введите имя пользователя" />
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">email*</label>
+        <input id="email" name="email" value="<%= it.email ?? ''%>" class="form-control" required placeholder="Введите email" />
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+<% if (it.message) { %>
+    <p class="text-danger"><%= it.message %></p>
+<% } %>

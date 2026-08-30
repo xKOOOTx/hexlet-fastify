@@ -2,6 +2,9 @@
     <% if (it.users.length === 0) { %>
         <p>Список пользователей пуст</p>
     <% } %>
+    <div class="d-flex justify-content-start mb-2">
+        <a href="/users/new" class="btn btn-primary">Добавить пользователя</a>
+    </div>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -22,6 +25,7 @@
             <% }) %>
         </tbody>
     </table>
-    
-    
+    <% if (it.users.length > 0) {%>
+        <p>Всего пользователей: <%= it.users.length %></p>
+    <% } %>
 </div>
