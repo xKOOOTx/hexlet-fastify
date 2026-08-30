@@ -28,4 +28,17 @@ export default (app) => {
         if(!course) return res.code(404).send('Курс с таким id не найден')
         return res.view('pages/courses/course', course)
     })
+
+    app.get('/courses/new', (req, res) => res.view('pages/courses/new'))
+    app.post('/courses/new', (req, res) => {
+        const { name, description } = req.body
+
+        courses.push({
+            id: courses.length + 1,
+            name,
+            description
+        })
+
+        return res.redirect('/courses')
+    })
 }

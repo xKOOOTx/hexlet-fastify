@@ -1,0 +1,11 @@
+<form action="/courses/new" method="POST" class="w-25">
+    <div class="mb-3">
+        <label for="name" class="form-label">Наименование курса*</label>
+        <input id="name" name="name" value="<%= it.name ?? ''%>" class="form-control" required placeholder="Введите наименование курса" />
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Описание</label>
+        <input id="description" name="description" value="<%= it.description ?? ''%>" class="form-control" placeholder="Введите описание" />
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
