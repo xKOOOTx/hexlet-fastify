@@ -8,7 +8,7 @@
                 <a href="<%= it.route('about')%>" class="nav-link">О нас</a>
             </li>
             <li class="nav-item">
-                <% /* <a href="<%= it.route('posts')%>" class="nav-link">Посты</a> */ %>
+                <a href="<%= it.route('posts')%>" class="nav-link">Посты</a>
             </li>
             <li class="nav-item">
                 <a href="<%= it.route('users')%>" class="nav-link">Пользователи</a>

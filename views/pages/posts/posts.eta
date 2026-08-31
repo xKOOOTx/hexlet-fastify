@@ -4,7 +4,7 @@
     <% } %>
     <% it.posts.forEach(post => { %>
         <div class="d-flex gap-3">
-            <a href="/posts/<%= post.id %>"><%= post.description %></a>
+            <a href="<%= it.route('post', { id: post.id })%>"><%= post.description %></a>
         </div>
     <% }) %>
 </div>
