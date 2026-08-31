@@ -1,4 +1,5 @@
 import { users } from '../mockdata/users.js'
+import yup from 'yup';
 
 export default (app) => {
     app.get('/users', async (req, res) => res.view('pages/users/users', { users }))
@@ -10,13 +11,57 @@ export default (app) => {
         return res.view('pages/users/user', user)
     })
     app.get('/users/new', async (req, res) => res.view('pages/users/user-new'))
-    app.post('/users/new', async (req, res) => {
-        const { username, email } = req.body
-        const normalizedEmail = email.trim().toLowerCase()
-        const foundUserByEmail = users.find(el => el.email === normalizedEmail)
-        if (foundUserByEmail) return res.code(409).view('pages/users/user-new', {username, email, message: 'Пользователь с таким email уже существует'})
 
-        users.push({id: `qwe-asd-${users.length}`, username, email})
-        return res.redirect('/users');
+    app.post('/users/new', {
+        attachValidation: true,
+        schema: {
+            body: yup.object({
+                name: yup.string().min(2, 'Имя должно быть не меньше двух символов'),
+                email: yup.string().email(),
+                password: yup.string().min(5),
+                passwordConfirmation: yup.string().min(5)
+            })
+        },
+        validatorCompiler: 
+            ({ schema, method, url, httpPart }) => 
+            (data) => {
+                if (data.password !== data.passwordConfirmation) {
+                    return {
+                        error: Error("Password confirmation is not equal the password")
+                    };
+                }
+                try {
+                    const result = schema.validateSync(data);
+                    return { value: result };
+                } catch (e) {
+                    return { error: e };
+                }
+            },
+    }, (req, res) => {
+        const { name, email, password, passwordConfirmation } = req.body;
+
+        if (req.validationError) {
+            const data = {
+                name,
+                email,
+                password,
+                passwordConfirmation,
+                error: req.validationError
+            };
+
+            res.view("pages/users/user-new", data);
+            return;
+        }
+
+        const user = {
+            id: `qwert-asdfg-zxcc-4235${users.length}`,
+            name,
+            email,
+            password,
+        }
+
+        users.push(user)
+
+        res.redirect('/users')
     })
 }

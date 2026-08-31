@@ -19,7 +19,7 @@
                     <th scope="row">
                         <a href="/users/<%= user.id %>"> <%= user.id %> </a>
                     </th>
-                    <td><%= user.username %></td>
+                    <td><%= user.name %></td>
                     <td><%= user.email %></td>
                 </tr>
             <% }) %>
