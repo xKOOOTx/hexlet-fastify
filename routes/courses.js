@@ -1,4 +1,5 @@
 import { courses } from '../mockdata/courses.js'
+import yup from 'yup'
 
 export default (app) => {
     app.get('/courses', async (req, res) => {
@@ -30,15 +31,47 @@ export default (app) => {
     })
 
     app.get('/courses/new', (req, res) => res.view('pages/courses/new'))
-    app.post('/courses/new', (req, res) => {
-        const { name, description } = req.body
 
-        courses.push({
+    app.post('/courses/new', {
+        attachValidation: true,
+        schema: {
+            body: yup.object({
+                name: yup.string().min(2, 'Название курса должно быть не меньше двух символов'),
+                description: yup.string().min(10, 'Описание курса должно быть не меньше 10 символов')
+            })
+        },
+        validatorCompiler:
+            ({ schema }) => 
+            (data) => {
+                try {
+                    const result = schema.validateSync(data);
+                    return { value: result }
+                } catch (e) {
+                    return { error: e }
+                }
+            }
+    }, (req, res) => {
+        const { name, description } = req.body;
+        
+        if (req.validationError) {
+            const data = {
+                name,
+                description,
+                error: req.validationError
+            }
+
+            res.view('pages/courses/new', data)
+            return;
+        }
+
+        const course = {
             id: courses.length + 1,
             name,
             description
-        })
+        }
 
-        return res.redirect('/courses')
+        courses.push(course)
+
+        res.redirect('/courses')
     })
 }

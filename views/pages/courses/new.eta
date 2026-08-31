@@ -9,3 +9,8 @@
     </div>
     <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
+<% if (it.error) { %>
+    <p class="text-danger">
+        <%= it.error.message %>
+    </p>
+<% } %>
