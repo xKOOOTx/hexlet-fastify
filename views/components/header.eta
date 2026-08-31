@@ -14,7 +14,7 @@
                 <a href="<%= it.route('users')%>" class="nav-link">Пользователи</a>
             </li>
             <li class="nav-item">
-                <% /* <a href="<%= it.route('xss')%>" class="nav-link">XSS</a> */ %>
+                <a href="/xss" class="nav-link">XSS</a>
             </li>
             <li class="nav-item">
                 <a href="<%= it.route('courses')%>" class="nav-link">Курсы</a>
