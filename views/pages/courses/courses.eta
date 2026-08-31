@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between">
-    <form action="/courses" method="GET" class="w-25">
+    <form action="<%= it.route('courses')%>" method="GET" class="w-25">
         <div class="mb-3">
             <label for="searchName" class="from-label">Поиск по наименованию</label>
             <input id="searchName" name="name" class="form-control" value="<%= it.name ?? '' %>" placeholder="Введите наименование курса"/>
@@ -14,7 +14,7 @@
         </div>
     </form>
     <div class="d-flex align-items-end mb-3">
-        <a href="/courses/new" class="btn btn-primary">Добавить курс</a>
+        <a href="<%= it.route('newCourseForm')%>" class="btn btn-primary">Добавить курс</a>
     </div>
 </div>
 <table class="table table-hover table-bordered table-dark">
@@ -39,7 +39,7 @@
                     <%= course.id %>
                 </th>
                 <td>
-                    <a href="/courses/<%= course.id%>"><%= course.name%></a>
+                    <a href="<%= it.route('course', {id: course.id})%>"><%= course.name%></a>
                     
                 </td>
                 <td>

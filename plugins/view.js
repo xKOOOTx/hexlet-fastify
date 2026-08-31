@@ -5,12 +5,16 @@ import formbody from '@fastify/formbody';
 
 
 export default fp(async (app, options) => {
+  const route = (name, params) => app.reverse(name, params);
   const eta = new Eta();
 
   await app.register(view, { 
     engine: { eta },
     root: 'views',
-    layout: 'layouts/mainpage'
+    layout: 'layouts/mainpage',
+    defaultContext: {
+    route,
+  },
   });
 
   await app.register(formbody);

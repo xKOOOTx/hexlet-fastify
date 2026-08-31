@@ -3,7 +3,7 @@
         <p>Список пользователей пуст</p>
     <% } %>
     <div class="d-flex justify-content-start mb-2">
-        <a href="/users/new" class="btn btn-primary">Добавить пользователя</a>
+        <a href="<%= it.route('newUserForm')%>" class="btn btn-primary">Добавить пользователя</a>
     </div>
     <table class="table table-bordered">
         <thead>
@@ -17,7 +17,7 @@
             <% it.users.forEach(user => { %>
                 <tr>
                     <th scope="row">
-                        <a href="/users/<%= user.id %>"> <%= user.id %> </a>
+                        <a href="<%= it.route('user', {id: user.id })%>"> <%= user.id %> </a>
                     </th>
                     <td><%= user.name %></td>
                     <td><%= user.email %></td>

@@ -2,7 +2,7 @@ import { courses } from '../mockdata/courses.js'
 import yup from 'yup'
 
 export default (app) => {
-    app.get('/courses', async (req, res) => {
+    app.get('/courses', { name: 'courses' }, async (req, res) => {
 
         const { name, description } = req.query
 
@@ -19,10 +19,9 @@ export default (app) => {
         return res.view('pages/courses/courses', {courses: filteredCourses, name, description})
     })
 
-    app.get('/courses/:id', async (req, res) => {
+    app.get('/courses/:id', { name: 'course' }, async (req, res) => {
         const { id } = req.params
         const course = courses.find(el => {
-            console.log('el: ', el)
             return el.id === Number(id)
         })
 
@@ -30,9 +29,10 @@ export default (app) => {
         return res.view('pages/courses/course', course)
     })
 
-    app.get('/courses/new', (req, res) => res.view('pages/courses/new'))
+    app.get('/courses/new', { name: 'newCourseForm' }, (req, res) => res.view('pages/courses/new'))
 
     app.post('/courses/new', {
+        name: 'createNewCourse',
         attachValidation: true,
         schema: {
             body: yup.object({
@@ -72,6 +72,6 @@ export default (app) => {
 
         courses.push(course)
 
-        res.redirect('/courses')
+        res.redirect(app.reverse('courses'))
     })
 }

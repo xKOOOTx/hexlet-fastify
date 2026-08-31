@@ -5,19 +5,19 @@
                 <a href="/" class="nav-link">Главная</a>    
             </li>
             <li class="nav-item">
-                <a href="/about" class="nav-link">О нас</a>
+                <a href="<%= it.route('about')%>" class="nav-link">О нас</a>
             </li>
             <li class="nav-item">
-                <a href="/posts" class="nav-link">Посты</a>
+                <% /* <a href="<%= it.route('posts')%>" class="nav-link">Посты</a> */ %>
             </li>
             <li class="nav-item">
-                <a href="/users" class="nav-link">Пользователи</a>
+                <a href="<%= it.route('users')%>" class="nav-link">Пользователи</a>
             </li>
             <li class="nav-item">
-                <a href="/xss" class="nav-link">XSS</a>
+                <% /* <a href="<%= it.route('xss')%>" class="nav-link">XSS</a> */ %>
             </li>
             <li class="nav-item">
-                <a href="/courses" class="nav-link">Курсы</a>
+                <a href="<%= it.route('courses')%>" class="nav-link">Курсы</a>
             </li>
         </ul>
     </div>
