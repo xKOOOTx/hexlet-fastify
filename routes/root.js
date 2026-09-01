@@ -5,7 +5,15 @@ export default async (app, options) => {
   /* root */
     const logger = morgan("combined");
   
-    app.get('/', async (req, res) => res.view('index'))    
+    app.get('/', async (req, res) => {
+
+        const visited = req.cookies.visited
+        const templateData = {
+            visited
+        }
+        res.cookie("visited", true)
+        return res.view('index', templateData)
+    })    
     app.use(logger)
 
     /**
