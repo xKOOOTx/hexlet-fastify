@@ -7,6 +7,9 @@ export default async (app, options) => {
   
     app.get('/', async (req, res) => {
 
+        console.log('cookies:', req.cookies)
+        console.log('session:', req.session)
+
         const visited = req.cookies.visited
         const templateData = {
             visited

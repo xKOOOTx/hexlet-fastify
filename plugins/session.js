@@ -1,11 +1,11 @@
 import fp from "fastify-plugin";
+import session from "@fastify/session";
 import fastifyCookie from "@fastify/cookie";
 
 export default fp(async (app, options) => {
   await app.register(fastifyCookie);
-
-  app.get("/cookies", (req, res) => {
-    console.log(req.cookies);
-    res.send();
+  await app.register(session, {
+    secret: "a secret with minimum length of 32 characters",
+    cookie: { secure: false },
   });
 });
