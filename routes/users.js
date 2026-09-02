@@ -66,7 +66,6 @@ export default (app) => {
         }
 
         // const isValid = await bcrypt.compare(password, user.password_hash)
-        // users.push(user)
         addUser(user)
 
         await res.redirect(app.reverse('users'))
