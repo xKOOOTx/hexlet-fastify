@@ -1,3 +1,5 @@
+# Deploy - [render.com](https://hexlet-fastify-n0rg.onrender.com)
+
 # Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
 
 This project was bootstrapped with Fastify-CLI.
