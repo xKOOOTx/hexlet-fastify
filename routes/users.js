@@ -1,6 +1,5 @@
 import { users } from '../mockdata/users.js'
 import yup from 'yup';
-import encrypt from '../utils/encrypt.js';
 
 export default (app) => {
     app.get('/u', { name: 'users' }, async (req, res) => res.view('pages/users/users', { users }))
@@ -78,18 +77,19 @@ export default (app) => {
         const user = users.find(el => el.email === email)
 
         if (!user) return res.code(404).send('User not found')
-        req.session.userId = user.id
+        req.session.set('userId', user.id)
 
+
+        req.flash("success", "Добро пожаловать")
         res.redirect('/')
     })
 
-    app.get('/u/log-out', { name: 'log-out' }, (req, res) => {
-        if (!req.session.userId) {
-            res.redirect('/')
-        }
+    app.post('/u/log-out', { name: 'log-out' }, (req, res) => {
 
-        delete req.session.userId
+        req.session.delete()
+
         res.redirect('/')
     })
-    
 }
+
+// req.flash("info", "Hello")

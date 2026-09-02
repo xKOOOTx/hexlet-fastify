@@ -30,7 +30,9 @@
         <% if (it.userId) { %>
             <div class="d-flex align-items-center">
                 <p class="mb-0"><%= it.user.name %></p>
-                <a href="<%= it.route('log-out')%>" class="btn">Выйти</a>
+                <form action="<%= it.route('log-out')%>" method="post">
+                    <button type="submit" class="btn">Выйти</button>
+                </form>
             </div>
         <% } %>
     </div>
