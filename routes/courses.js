@@ -1,29 +1,18 @@
-import { courses } from '../mockdata/courses.js'
 import yup from 'yup'
+import { addCourse, getCourses, getCourseById } from '../repositories/courses.js'
 
 export default (app) => {
     app.get('/courses', { name: 'courses' }, async (req, res) => {
-
         const { name, description } = req.query
+        const courses = getCourses({name, description})
 
-        const filteredCourses = courses.filter(course => {
-            const matchesName = !name || 
-                course.name.toLowerCase().includes(name.toLowerCase())
-
-            const matchesDescription = !description ||
-                course.description.toLowerCase().includes(description.toLowerCase())
-
-            return matchesName && matchesDescription
-        })
-
-        return res.view('pages/courses/courses', {courses: filteredCourses, name, description})
+        return res.view('pages/courses/courses', {courses, name, description})
     })
 
     app.get('/courses/:id', { name: 'course' }, async (req, res) => {
         const { id } = req.params
-        const course = courses.find(el => {
-            return el.id === Number(id)
-        })
+
+        const course = getCourseById(id)
 
         if(!course) return res.code(404).send('Курс с таким id не найден')
         return res.view('pages/courses/course', course)
@@ -65,12 +54,11 @@ export default (app) => {
         }
 
         const course = {
-            id: courses.length + 1,
             name,
             description
         }
 
-        courses.push(course)
+        addCourse(course)
 
         res.redirect(app.reverse('courses'))
     })

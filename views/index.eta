@@ -2,7 +2,6 @@
 <% if (!it.visited) { %> Это сообщение показывается только один раз. Если
       вы хотите увидеть его снова, сотрите куки <% } %>
 
-<% console.log('it: ', it) %>
 <% Object.entries(it.messages).forEach(([type, messages]) => { %>
     <% messages.forEach((message) => { %>
         <div class="alert alert-<%= type %>">

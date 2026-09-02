@@ -9,8 +9,6 @@ export default async (app, options) => {
 
         const visited = req.cookies.visited
         const userId = req.session.get('userId')
-        console.log('LOGIN 2:', req.session.get('userId'))
-        console.log('userId: ', userId)
         const user = users.find(el => el.id === userId)
         const templateData = {
             visited,
