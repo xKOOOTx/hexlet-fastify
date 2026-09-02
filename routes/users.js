@@ -1,11 +1,16 @@
-import { users } from '../mockdata/users.js'
 import yup from 'yup';
+import { getUserById, getUsers, addUser } from '../repositories/users.js';
+import bcrypt from 'bcrypt'
 
 export default (app) => {
-    app.get('/u', { name: 'users' }, async (req, res) => res.view('pages/users/users', { users }))
+    app.get('/u', { name: 'users' }, async (req, res) => {
+        const users = getUsers();
+        console.log('users: ', users)
+        return res.view('pages/users/users', { users });
+    })
     app.get('/u/:id', { name: 'user'}, async (req, res) => {
         const { id } = req.params
-        const user = users.find(el => el.id === id)
+        const user = getUserById(id)
 
         if (!user) return res.code(404).send('Пользователь с таким id не найден')
         return res.view('pages/users/user', user)
@@ -38,7 +43,7 @@ export default (app) => {
                     return { error: e };
                 }
             },
-    }, (req, res) => {
+    }, async (req, res) => {
         const { name, email, password, passwordConfirmation } = req.body;
 
         if (req.validationError) {
@@ -55,15 +60,16 @@ export default (app) => {
         }
 
         const user = {
-            id: `qwert-asdfg-zxcc-4235${users.length}`,
             name,
             email,
-            password,
+            password_hash: await bcrypt.hash(password, 10),
         }
 
-        users.push(user)
+        // const isValid = await bcrypt.compare(password, user.password_hash)
+        // users.push(user)
+        addUser(user)
 
-        res.redirect(app.reverse('users'))
+        await res.redirect(app.reverse('users'))
     })
 
     app.get('/u/log-in', { name: 'log-in' }, (req, res) => {
@@ -74,7 +80,8 @@ export default (app) => {
     app.post('/u/log-in', { name: 'user-log-in' }, (req, res) => {
         const { email, password } = req.body
 
-        const user = users.find(el => el.email === email)
+        const user = []
+        // const user = users.find(el => el.email === email)
 
         if (!user) return res.code(404).send('User not found')
         req.session.set('userId', user.id)

@@ -1,19 +1,26 @@
 <div class="mx-auto">
-    <% if (it.users.length === 0) { %>
-        <p>Список пользователей пуст</p>
-    <% } %>
+
     <div class="d-flex justify-content-start mb-2">
         <a href="<%= it.route('newUserForm')%>" class="btn btn-primary">Добавить пользователя</a>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered table-dark">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">email</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
+            <% if (it.users.length === 0) { %>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Нет данных</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            <% } %>
             <% it.users.forEach(user => { %>
                 <tr>
                     <th scope="row">
@@ -21,8 +28,10 @@
                     </th>
                     <td><%= user.name %></td>
                     <td><%= user.email %></td>
+                    <td><%= user.password_hash %></td>
                 </tr>
             <% }) %>
+            
         </tbody>
     </table>
     <% if (it.users.length > 0) {%>
