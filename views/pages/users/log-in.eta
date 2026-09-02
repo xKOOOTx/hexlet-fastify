@@ -1,0 +1,11 @@
+<form action="<%= it.route('user-log-in')%>" method="post" class="w-25">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email*</label>
+        <input id="email" name="email" value="alex@gmail.com" class="form-control" required placeholder="Введите email" />
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Пароль</label>
+        <input id="password" name="password" type="password" value="<%= it.password ?? ''%>" class="form-control" placeholder="Введите пароль" />
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

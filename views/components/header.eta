@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-secondary">
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse d-flex justify-content-between">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a href="/" class="nav-link">Главная</a>    
@@ -20,5 +20,18 @@
                 <a href="<%= it.route('courses')%>" class="nav-link">Курсы</a>
             </li>
         </ul>
+        <% if (!it.userId) { %>
+            <ul class="navbar-nav">
+                <li class="nev-item">
+                    <a href="<%= it.route('log-in') %>" class="nav-link">Вход</a>
+                </li>
+            </ul>
+        <% } %>
+        <% if (it.userId) { %>
+            <div class="d-flex">
+                <p class="mb-0"><%= it.user.name %></p>
+                <a href="<%= it.route('log-out')%>" class="btn">Выйти</a>
+            </div>
+        <% } %>
     </div>
 </nav>
