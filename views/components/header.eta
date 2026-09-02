@@ -28,7 +28,7 @@
             </ul>
         <% } %>
         <% if (it.userId) { %>
-            <div class="d-flex">
+            <div class="d-flex align-items-center">
                 <p class="mb-0"><%= it.user.name %></p>
                 <a href="<%= it.route('log-out')%>" class="btn">Выйти</a>
             </div>
